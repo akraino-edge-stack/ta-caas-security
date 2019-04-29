@@ -16,7 +16,6 @@
 %define RPM_NAME caas-%{COMPONENT}
 %define RPM_MAJOR_VERSION 1.0.0
 %define RPM_MINOR_VERSION 1
-%define RBAC_MANIFEST_DIR /var/lib/caas/rbac_manifests/
 
 Name:           %{RPM_NAME}
 Version:        %{RPM_MAJOR_VERSION}
@@ -36,8 +35,8 @@ This rpm contains the necessary security related playbooks + manifests for the c
 %build
 
 %install
-mkdir -p %{buildroot}/%{RBAC_MANIFEST_DIR}/
-rsync -av rbac_manifests/* %{buildroot}/%{RBAC_MANIFEST_DIR}/
+mkdir -p %{buildroot}/%{_caas_rbac_manifests_path}/
+rsync -av rbac_manifests/* %{buildroot}/%{_caas_rbac_manifests_path}/
 
 mkdir -p %{buildroot}/%{_playbooks_path}/
 rsync -av ansible/playbooks/* %{buildroot}/%{_playbooks_path}/
@@ -46,7 +45,7 @@ mkdir -p %{buildroot}/%{_roles_path}/
 rsync -av ansible/roles/* %{buildroot}/%{_roles_path}/
 
 %files
-%{RBAC_MANIFEST_DIR}/*
+%{_caas_rbac_manifests_path}/*
 %{_playbooks_path}/*
 %{_roles_path}/*
 
