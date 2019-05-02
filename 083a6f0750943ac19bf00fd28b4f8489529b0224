@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ac39ddb3_619ecf94",
+        "filename": "ansible/roles/rbac/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 43
+      },
+      "writtenOn": "2019-05-02T12:22:42Z",
+      "side": 1,
+      "message": "typo? I assume should be rbac",
+      "range": {
+        "startLine": 16,
+        "startChar": 15,
+        "endLine": 16,
+        "endChar": 20
+      },
+      "revId": "083a6f0750943ac19bf00fd28b4f8489529b0224",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
