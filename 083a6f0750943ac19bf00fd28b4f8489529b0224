@@ -22,6 +22,30 @@
       "revId": "083a6f0750943ac19bf00fd28b4f8489529b0224",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "45c4d1ca_fbdd4a2f",
+        "filename": "ansible/roles/rbac/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 185
+      },
+      "writtenOn": "2019-05-02T12:32:54Z",
+      "side": 1,
+      "message": "yes, it is a typo. PS2 will fix this.",
+      "parentUuid": "ac39ddb3_619ecf94",
+      "range": {
+        "startLine": 16,
+        "startChar": 15,
+        "endLine": 16,
+        "endChar": 20
+      },
+      "revId": "083a6f0750943ac19bf00fd28b4f8489529b0224",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
