@@ -1,0 +1,112 @@
+---
+# Copyright 2019 Nokia
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+- name: set /etc/openssl directory with proper rights
+  file:
+    path: /etc/openssl
+    state: directory
+    mode: 0755
+
+- name: templating path hardener profile.d script
+  template:
+    src: hardened_path.sh
+    dest: /etc/profile.d/hardened_path.sh
+    mode: 0644
+
+- name: removing root spool/mail if exists
+  file:
+    path: /var/spool/mail/root
+    state: absent
+
+- name: creating root spool/mail
+  file:
+    path: /var/spool/mail/root
+    state: directory
+    mode: 0660
+    owner: root
+    group: mail
+
+- name: removing unused users
+  user:
+    name: "{{ item }}"
+    state: absent
+    remove: yes # deletes home, spool etc
+  ignore_errors: yes # sometimes spool not exists, sometimes group is not primary.
+  with_items:
+    - "lp"
+    - "operator"
+    - "games"
+    - "ftp"
+
+- name: remove not needed user groups
+  group:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - "cdrom"
+    - "floppy"
+    - "games"
+    - "tape"
+
+- name: system uids to 999 instead of 199
+  replace:
+    dest: /etc/profile
+    regexp: 'if \[ \$UID -gt 199 \]'
+    replace: 'if [ $UID -gt 999 ]'
+
+- name: Removing home per bin from path in skeleton and in the already existing root
+  lineinfile:
+    dest: "{{ item }}"
+    state: absent
+    regexp: '^PATH=.*$HOME/bin'
+  with_items:
+    - /etc/skel/.bash_profile
+    - /root/.bash_profile
+
+- name: create /etc/cron.allow with root
+  copy:
+    content: 'root'
+    dest: /etc/cron.allow
+    owner: root
+    group: root
+    mode: 0600
+    force: yes
+
+- name: remove linked files
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - /etc/prelink.conf.d/fipscheck.conf
+    - /etc/prelink.conf.d/grub2.conf
+    - /etc/prelink.conf.d/nss-softokn-prelink.conf
+
+- name: change auditd config
+  lineinfile:
+    dest: /etc/audit/auditd.conf
+    state: present
+    regexp: '^ *{{ item.key }} *=.+$'
+    line: '{{ item.key }} = {{ item.val }}'
+  with_items:
+    - key: num_logs
+      val: 10
+    - key: max_log_file
+      val: 15
+
+- name: No root login access on terminals /etc/securetty
+  copy:
+    content: 'console'
+    dest: /etc/securetty
+    force: yes
