@@ -1,0 +1,257 @@
+---
+# Copyright 2019 Nokia
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: tiller
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: caas:tiller
+rules:
+# copied from admin role, with some limits
+  - apiGroups:
+    - ""
+    resources:
+    - pods
+    - pods/attach
+    - pods/exec
+    - pods/portforward
+    - pods/proxy
+    verbs:
+    - create
+    - delete
+    - deletecollection
+    - get
+    - list
+    - patch
+    - update
+    - watch
+  - apiGroups:
+    - ""
+    resources:
+    - configmaps
+    - endpoints
+    - persistentvolumeclaims
+    - replicationcontrollers
+    - replicationcontrollers/scale
+    - secrets
+    - serviceaccounts
+    - services
+    - services/proxy
+    verbs:
+    - create
+    - delete
+    - deletecollection
+    - get
+    - list
+    - patch
+    - update
+    - watch
+  - apiGroups:
+    - ""
+    resources:
+    - bindings
+    - events
+    - limitranges
+    - namespaces/status
+    - pods/log
+    - pods/status
+    - replicationcontrollers/status
+    - resourcequotas
+    - resourcequotas/status
+    verbs:
+    - get
+    - list
+    - watch
+  - apiGroups:
+    - ""
+    resources:
+    - namespaces
+    verbs:
+    - get
+    - list
+    - watch
+  - apiGroups:
+    - apps
+    resources:
+    - daemonsets
+    - deployments
+    - deployments/rollback
+    - deployments/scale
+    - replicasets
+    - replicasets/scale
+    - statefulsets
+    - statefulsets/scale
+    verbs:
+    - create
+    - delete
+    - deletecollection
+    - get
+    - list
+    - patch
+    - update
+    - watch
+  - apiGroups:
+    - autoscaling
+    resources:
+    - horizontalpodautoscalers
+    verbs:
+     - create
+     - delete
+     - deletecollection
+     - get
+     - list
+     - patch
+     - update
+     - watch
+  - apiGroups:
+    - batch
+    resources:
+    - cronjobs
+    - jobs
+    verbs:
+    - create
+    - delete
+    - deletecollection
+    - get
+    - list
+    - patch
+    - update
+    - watch
+  - apiGroups:
+    - extensions
+    resources:
+    - daemonsets
+    - deployments
+    - deployments/rollback
+    - deployments/scale
+    - ingresses
+    - networkpolicies
+    - replicasets
+    - replicasets/scale
+    - replicationcontrollers/scale
+    verbs:
+    - create
+    - delete
+    - deletecollection
+    - get
+    - list
+    - patch
+    - update
+    - watch
+  - apiGroups:
+    - policy
+    resources:
+    - poddisruptionbudgets
+    verbs:
+    - create
+    - delete
+    - deletecollection
+    - get
+    - list
+    - patch
+    - update
+    - watch
+  - apiGroups:
+    - authorization.k8s.io
+    resources:
+    - localsubjectaccessreviews
+    verbs:
+    - create
+  - apiGroups:
+    - rbac.authorization.k8s.io
+    resources:
+    - rolebindings
+    - roles
+    verbs:
+    - create
+    - delete
+    - deletecollection
+    - get
+    - list
+    - patch
+    - update
+    - watch
+  - apiGroups:
+    - apiregistration.k8s.io
+    resources:
+    - apiservices
+    verbs:
+    - create
+    - delete
+    - deletecollection
+    - get
+    - list
+    - patch
+    - update
+    - watch
+  - apiGroups:
+    - danm.k8s.io
+    resources:
+    - danmnets
+    verbs:
+    - create
+    - delete
+    - deletecollection
+    - get
+    - list
+    - patch
+    - update
+    - watch
+  - apiGroups:
+    - admissionregistration.k8s.io
+    resources:
+    - mutatingwebhookconfigurations
+    - validatingwebhookconfigurations
+    verbs:
+    - create
+    - delete
+    - deletecollection
+    - get
+    - list
+    - patch
+    - update
+    - watch
+     
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: caas:tiller
+subjects:
+- kind: ServiceAccount
+  name: tiller
+  namespace: kube-system
+roleRef:
+  kind: ClusterRole
+  name: caas:tiller
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: caas:tiller-psp
+subjects:
+- kind: ServiceAccount
+  name: tiller
+  namespace: kube-system
+roleRef:
+  kind: ClusterRole
+  name: caas:infra-psp
+  apiGroup: rbac.authorization.k8s.io
