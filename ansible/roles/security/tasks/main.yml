@@ -1,0 +1,98 @@
+---
+# Copyright 2019 Nokia
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+  - name: protect grub with root password
+    blockinfile:
+      dest: /etc/grub.d/40_custom
+      state: present
+      insertafter: 'EOF'
+      content: |
+        # define superusers
+        set superusers="root"
+        #define users
+        password_pbkdf2 root {{ host_os.grub2_password }}
+    when:
+      - host_os is defined
+      - host_os.grub2_password | default(False, True)
+
+  - name: generate grub config
+    command: /usr/sbin/grub2-mkconfig -o /boot/grub2/grub.cfg
+
+  - name: chsh/chfn right setting
+    file:
+      path: "{{ item }}"
+      state: file
+      mode: 04700
+      owner: root
+      group: root
+    with_items:
+      - /usr/bin/chsh
+      - /usr/bin/chfn
+
+  - name: permission change for ssh certificates
+    file:
+      path: "{{ item }}"
+      state: file
+      mode: 0600
+      owner: root
+      group: root
+    with_fileglob:
+      - /etc/ssh/ssh_host_*_key
+
+  - name: reload audit config
+    command: augenrules --load
+
+  - name: Checking existing file id for permission set 0600
+    stat:
+      path: "{{ item }}"
+    register: file_perm_status
+    with_items:
+      - /var/log/boot.log
+      - /var/log/cloud-init.log
+      - /var/log/cloud-init-output.log
+      - /var/log/dmesg
+      - /var/log/dmesg.old
+      - /var/log/java_install.log
+      - /var/log/ntp.log
+      - /var/log/rhsm/rhsmcertd.log
+      - /var/log/rhsm/rhsm.log
+      - /var/log/tuned/tuned.log
+      - /var/log/up2date
+      - /var/log/wpa_supplicant.log
+      - /etc/cron.d/0hourly
+      - /etc/cron.daily/0yum-daily.cron
+      - /etc/cron.daily/man-db.cron
+      - /etc/cron.hourly/0anacron
+      - /etc/cron.hourly/0yum-hourly.cron
+      - /boot/grub2/grub.cfg
+      - /etc/rsyslog.conf
+      - /etc/sysctl.conf
+      - /etc/ntp.conf
+      - /etc/audit/audit.rules
+
+  - name: change permission of of files to 0600
+    file:
+      path: "{{ item.stat.path }}"
+      state: file
+      mode: 0600
+    when:  item.stat.exists
+    with_items: "{{ file_perm_status.results }}"
+
+  - name: delete broken links
+    file:
+      path: "{{ item }}"
+      state: absent
+    with_lines:
+      - find /run/udev/watch/ -xtype l
