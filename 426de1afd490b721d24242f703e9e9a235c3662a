@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5885b62b_7a867390",
+        "filename": "ansible/roles/cert/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 187
+      },
+      "writtenOn": "2019-05-03T12:37:11Z",
+      "side": 1,
+      "message": "this comment is a bit confusing and probably unnecessary.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 76
+      },
+      "revId": "426de1afd490b721d24242f703e9e9a235c3662a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "189a4a36_ac4c6f7b",
+        "filename": "ansible/roles/cert/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 187
+      },
+      "writtenOn": "2019-05-03T12:37:11Z",
+      "side": 1,
+      "message": "same here, we probably don\u0027t need this comment",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 80
+      },
+      "revId": "426de1afd490b721d24242f703e9e9a235c3662a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
