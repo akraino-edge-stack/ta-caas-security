@@ -88,6 +88,13 @@ rules:
     - list
     - watch
   - apiGroups:
+    - ""
+    resources:
+    - deployments
+    verbs:
+    - get
+    - list
+  - apiGroups:
     - apps
     resources:
     - daemonsets
@@ -107,6 +114,14 @@ rules:
     - patch
     - update
     - watch
+  - apiGroups:
+    - apps
+    resources:
+    - pods
+    - services
+    verbs:
+    - get
+    - list
   - apiGroups:
     - autoscaling
     resources:
@@ -155,6 +170,14 @@ rules:
     - patch
     - update
     - watch
+  - apiGroups:
+    - extensions
+    resources:
+    - pods
+    - services
+    verbs:
+    - get
+    - list
   - apiGroups:
     - policy
     resources:
