@@ -16,6 +16,24 @@
       "revId": "b1310845883274342e04184d68e06ccd704945cd",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fb56bfbf_2472bac2",
+        "filename": "rbac_manifests/tiller-rbac-config.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 185
+      },
+      "writtenOn": "2019-05-07T10:38:59Z",
+      "side": 1,
+      "message": "Helm repo looks too generous to me: https://github.com/helm/helm/blob/master/docs/rbac.md#example-deploy-tiller-in-a-namespace-restricted-to-deploying-resources-in-another-namespace",
+      "parentUuid": "29217eff_43d08754",
+      "revId": "b1310845883274342e04184d68e06ccd704945cd",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
