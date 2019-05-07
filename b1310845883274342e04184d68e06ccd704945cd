@@ -70,6 +70,24 @@
       "revId": "b1310845883274342e04184d68e06ccd704945cd",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c087fd3a_dc997fe1",
+        "filename": "rbac_manifests/tiller-rbac-config.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 183
+      },
+      "writtenOn": "2019-05-07T11:46:33Z",
+      "side": 1,
+      "message": "After checking the reference, and the output of kubectl api-resources --api-group\u003dextensions -o wide command IMO the current role is ACTUALLY right :)\n\nlet\u0027s double checks all allowed APIs against the 1.14 doc though, just in case",
+      "parentUuid": "5ec1be04_fef4a14c",
+      "revId": "b1310845883274342e04184d68e06ccd704945cd",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
