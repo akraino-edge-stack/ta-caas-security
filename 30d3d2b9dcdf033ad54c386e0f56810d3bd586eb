@@ -34,6 +34,24 @@
       "revId": "30d3d2b9dcdf033ad54c386e0f56810d3bd586eb",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6d992276_e5537bec",
+        "filename": "rbac_manifests/caas-infra-psp.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 185
+      },
+      "writtenOn": "2019-05-07T07:07:57Z",
+      "side": 1,
+      "message": "Since kube-proxy is a static pod in here: \"Static pods are managed directly by kubelet daemon on a specific node, without the API server observing it. ... Kubelet automatically tries to create a mirror pod on the Kubernetes API server for each static pod. This means that the pods are visible on the API server but cannot be controlled from there.\" Which means ATM kubernetes don\u0027t allow mirror pods to reference ServiceAccounts or SecretVolumeSources either.",
+      "parentUuid": "646624fb_07f72f68",
+      "revId": "30d3d2b9dcdf033ad54c386e0f56810d3bd586eb",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
