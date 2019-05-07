@@ -34,6 +34,24 @@
       "revId": "b1310845883274342e04184d68e06ccd704945cd",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6de7c96e_aea33a7e",
+        "filename": "rbac_manifests/tiller-rbac-config.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 183
+      },
+      "writtenOn": "2019-05-07T11:19:01Z",
+      "side": 1,
+      "message": "this is your friend: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.14/\n\nthe exercise: gather all the API groups the objects we allow can belong to",
+      "parentUuid": "fb56bfbf_2472bac2",
+      "revId": "b1310845883274342e04184d68e06ccd704945cd",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
