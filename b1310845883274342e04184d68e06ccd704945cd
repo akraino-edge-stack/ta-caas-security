@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29217eff_43d08754",
+        "filename": "rbac_manifests/tiller-rbac-config.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 183
+      },
+      "writtenOn": "2019-05-07T10:26:52Z",
+      "side": 1,
+      "message": "instead of randomly trying to satisfy the exact errors, maybe we should check the proposed Tiller settings for 1.14 in the Helm repo :)",
+      "revId": "b1310845883274342e04184d68e06ccd704945cd",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
