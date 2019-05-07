@@ -52,6 +52,24 @@
       "revId": "b1310845883274342e04184d68e06ccd704945cd",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ec1be04_fef4a14c",
+        "filename": "rbac_manifests/tiller-rbac-config.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 185
+      },
+      "writtenOn": "2019-05-07T11:43:49Z",
+      "side": 1,
+      "message": "No, from the looks of it, it is definitely not my friend. I know, I know the inner beauty is important. :)\nBTW, thanks for the link.",
+      "parentUuid": "6de7c96e_aea33a7e",
+      "revId": "b1310845883274342e04184d68e06ccd704945cd",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
