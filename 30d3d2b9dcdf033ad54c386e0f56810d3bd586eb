@@ -52,6 +52,24 @@
       "revId": "30d3d2b9dcdf033ad54c386e0f56810d3bd586eb",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9b494eb7_0ad00a2b",
+        "filename": "rbac_manifests/caas-infra-psp.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 185
+      },
+      "writtenOn": "2019-05-16T15:02:18Z",
+      "side": 1,
+      "message": "Removed this part, and added kube-proxy role.",
+      "parentUuid": "6d992276_e5537bec",
+      "revId": "30d3d2b9dcdf033ad54c386e0f56810d3bd586eb",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
