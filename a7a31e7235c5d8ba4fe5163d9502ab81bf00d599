@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4cedfaf2_285c19ef",
+        "filename": "rbac_manifests/danm-rbac-config.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 183
+      },
+      "writtenOn": "2019-07-16T14:12:50Z",
+      "side": 1,
+      "message": "no danmnets",
+      "revId": "a7a31e7235c5d8ba4fe5163d9502ab81bf00d599",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
