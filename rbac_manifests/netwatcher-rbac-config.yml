@@ -29,7 +29,8 @@ rules:
 - apiGroups:
   - "danm.k8s.io"
   resources:
-  - danmnets
+  - tenantnetworks
+  - clusternetworks
   verbs:
   - get
   - list
