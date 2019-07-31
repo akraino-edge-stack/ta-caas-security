@@ -104,7 +104,7 @@
     mode: 0000
   when: not cert_path_register.stat.exists
 
-- name: adding default acl read to {{ users.admin_user_name }} to {{ cert_path }}/ca.epm
+- name: adding default acl read to {{ users.admin_user_name }} to {{ cert_path }}/ca.pem
   acl:
     name:  "{{ cert_path }}/ca.pem"
     entity: "{{ users.admin_user_name }}"
@@ -131,6 +131,14 @@
     permissions: "rx"
     state: present
   with_items: "{{ add_users | default([]) }}"
+
+- name: adding mask to the acl
+  acl:
+    name: "{{ cert_path }}"
+    etype: mask
+    permissions: "rx"
+    recursive: yes
+    state: present
 
 - name: create kubeconfig from cert
   include_role:
