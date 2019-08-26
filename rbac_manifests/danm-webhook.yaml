@@ -27,6 +27,7 @@ rules:
 - apiGroups:
   - danm.k8s.io
   resources:
+  - danmeps
   - tenantconfigs
   verbs: [ "*" ]
 ---
