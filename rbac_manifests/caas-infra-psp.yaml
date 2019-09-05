@@ -41,6 +41,8 @@ spec:
     rule: RunAsAny
   allowedCapabilities:
     - NET_BIND_SERVICE
+    - SETGID
+    - SETUID
     - ALL
     - IPC_LOCK
     - SYS_RESOURCE
