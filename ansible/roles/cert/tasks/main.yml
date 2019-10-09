@@ -80,82 +80,95 @@
     chdir: "{{ cert_path }}"
   when: not cert.stat.exists
 
-- name: reducing permission of key file and cert file
-  file:
-    path: "{{ cert_path }}/{{ item }}"
-    mode: 0000
-  with_items:
-    - "{{ _key }}"
-    - "{{ _cert }}"
-  when: not cert.stat.exists
+- name: load certicate into secret
+  command: "kubectl -n kube-system create secret {{ _secret_type }}  {{ _secret_name }} --cert={{ cert_path }}/{{ _cert }} --key={{ cert_path }}/{{ _key }}"
+  when: _secret_name != ''
 
-- name: remove cert request and serial file
+- name: SECURITY settings on cert files
+  block:
+    - name: reducing permission of key file and cert file
+      file:
+        path: "{{ cert_path }}/{{ item }}"
+        mode: 0000
+      with_items:
+        - "{{ _key }}"
+        - "{{ _cert }}"
+      when: not cert.stat.exists
+
+    - name: remove cert request and serial file
+      file:
+        path: "{{ cert_path }}/{{ item }}"
+        state: absent
+      with_items:
+        - "{{ instance }}.csr"
+        - "{{ instance }}.slr"
+      when: not cert.stat.exists
+
+    - name: setting ca.pem permission
+      file:
+        path: "{{ cert_path }}/ca.pem"
+        mode: 0000
+      when: not cert_path_register.stat.exists
+
+    - name: adding default acl read to {{ users.admin_user_name }} to {{ cert_path }}/ca.pem
+      acl:
+        name:  "{{ cert_path }}/ca.pem"
+        entity: "{{ users.admin_user_name }}"
+        etype: user
+        permissions: rx
+        state: present
+
+    - name: allowing users to access keys
+      acl:
+        name: "{{ item[0] }}"
+        entity: "{{ item[1] }}"
+        etype: user
+        permissions: "r"
+        state: present
+      with_nested:
+        - [ "{{ cert_path }}/{{ _key }}", "{{ cert_path }}/{{ _cert }}", "{{ cert_path }}/ca.pem" ]
+        - "{{ add_users | default([]) }}"
+
+    - name: adding exec flag to {{ cert_path }} directory for users
+      acl:
+        name: "{{ cert_path }}"
+        entity: "{{ item }}"
+        etype: user
+        permissions: "rx"
+        state: present
+      with_items: "{{ add_users | default([]) }}"
+
+    - name: adding mask to the acl
+      acl:
+        name: "{{ cert_path }}"
+        etype: mask
+        permissions: "rx"
+        recursive: yes
+        state: present
+
+    - name: create kubeconfig from cert
+      include_role:
+        name: kubeconfig
+      vars:
+        config:
+          path: "{{ item.path }}"
+          owner: "{{ item.owner | default('root') }}"
+          group: "{{ item.group | default('root') }}"
+          restricted: "{{ item.restricted | default(true) }}"
+          user: "{{ _cn }}"
+          cert: "{{ cert_path }}/{{ _cert }}"
+          key: "{{ cert_path }}/{{ _key }}"
+          apiserver: "{{ item.apiserver }}"
+          apiserver_port: "{{ item.apiserver_port }}"
+          add_users: "{{ add_users | default([]) }}"
+      with_items: "{{ kube_conf | default([]) }}"
+  when: _keep_files
+
+- name: Remove direcrory in case of _keep_files==false
   file:
-    path: "{{ cert_path }}/{{ item }}"
+    name: "{{ cert_path }}"
     state: absent
-  with_items:
-    - "{{ instance }}.csr"
-    - "{{ instance }}.slr"
-  when: not cert.stat.exists
-
-- name: setting ca.pem permission
-  file:
-    path: "{{ cert_path }}/ca.pem"
-    mode: 0000
-  when: not cert_path_register.stat.exists
-
-- name: adding default acl read to {{ users.admin_user_name }} to {{ cert_path }}/ca.pem
-  acl:
-    name:  "{{ cert_path }}/ca.pem"
-    entity: "{{ users.admin_user_name }}"
-    etype: user
-    permissions: rx
-    state: present
-
-- name: allowing users to access keys
-  acl:
-    name: "{{ item[0] }}"
-    entity: "{{ item[1] }}"
-    etype: user
-    permissions: "r"
-    state: present
-  with_nested:
-    - [ "{{ cert_path }}/{{ _key }}", "{{ cert_path }}/{{ _cert }}", "{{ cert_path }}/ca.pem" ]
-    - "{{ add_users | default([]) }}"
-
-- name: adding exec flag to {{ cert_path }} directory for users
-  acl:
-    name: "{{ cert_path }}"
-    entity: "{{ item }}"
-    etype: user
-    permissions: "rx"
-    state: present
-  with_items: "{{ add_users | default([]) }}"
-
-- name: adding mask to the acl
-  acl:
-    name: "{{ cert_path }}"
-    etype: mask
-    permissions: "rx"
-    recursive: yes
-    state: present
-
-- name: create kubeconfig from cert
-  include_role:
-    name: kubeconfig
-  vars:
-    config:
-      path: "{{ item.path }}"
-      owner: "{{ item.owner | default('root') }}"
-      group: "{{ item.group | default('root') }}"
-      restricted: "{{ item.restricted | default(true) }}"
-      user: "{{ _cn }}"
-      cert: "{{ cert_path }}/{{ _cert }}"
-      key: "{{ cert_path }}/{{ _key }}"
-      apiserver: "{{ item.apiserver }}"
-      apiserver_port: "{{ item.apiserver_port }}"
-      add_users: "{{ add_users | default([]) }}"
-  with_items: "{{ kube_conf | default([]) }}"
+  when: not _keep_files
 
 - name: force IO to write data to disk
   shell: "sync"
