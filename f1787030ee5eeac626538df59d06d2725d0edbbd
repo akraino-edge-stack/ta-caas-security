@@ -25,6 +25,52 @@
     },
     {
       "key": {
+        "uuid": "d331fa9f_21e3da1c",
+        "filename": "ansible/roles/cert/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 186
+      },
+      "writtenOn": "2019-10-10T08:52:07Z",
+      "side": 1,
+      "message": "Namespace should be a parameter.",
+      "range": {
+        "startLine": 84,
+        "startChar": 23,
+        "endLine": 84,
+        "endChar": 34
+      },
+      "revId": "f1787030ee5eeac626538df59d06d2725d0edbbd",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3862e36_1d3d4e97",
+        "filename": "ansible/roles/cert/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 186
+      },
+      "writtenOn": "2019-10-10T08:52:07Z",
+      "side": 1,
+      "message": "I believe this shouldn\u0027t be part file keeping, because currently `kubeconfig` role embeds certificates to its output, so kubeconfig doesn\u0027t depend on the generated files.",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 49
+      },
+      "revId": "f1787030ee5eeac626538df59d06d2725d0edbbd",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "13f56dfe_83c0651d",
         "filename": "ansible/roles/cert/tasks/main.yml",
         "patchSetId": 1
