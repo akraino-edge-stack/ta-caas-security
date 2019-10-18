@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "65f9a6bc_1d282347",
+        "filename": "ansible/roles/cert/vars/main.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 183
+      },
+      "writtenOn": "2019-10-18T09:04:15Z",
+      "side": 1,
+      "message": "when secret is requested, the cert files and keys must be deleted, regardless what the caller wants\nI\u0027m okay with the introduction of the _keep_files parameter, but when we 100% know the files should no be kept, we should ignore/overwrite it",
+      "revId": "b073270c634026f3f9de19837fdcc0184b66931f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
