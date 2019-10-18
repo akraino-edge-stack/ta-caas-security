@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f23e2ba5_ea528ff5",
+        "filename": "rbac_manifests/dynamic-local-pv-provisioner-rbac-config.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 184
+      },
+      "writtenOn": "2019-10-18T06:54:53Z",
+      "side": 1,
+      "message": "Bad format",
+      "revId": "700142c1037654c47aaf2ecd805053488f498e03",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32a87b73_9ce57889",
+        "filename": "rbac_manifests/dynamic-local-pv-provisioner-rbac-config.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 184
+      },
+      "writtenOn": "2019-10-18T06:54:53Z",
+      "side": 1,
+      "message": "I think later on we will need to modify the pvcs",
+      "revId": "700142c1037654c47aaf2ecd805053488f498e03",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ae047b1_399efd6c",
+        "filename": "rbac_manifests/storage-local-static-provisioner-rbac-config.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 184
+      },
+      "writtenOn": "2019-10-18T06:54:53Z",
+      "side": 1,
+      "message": "Bad format",
+      "revId": "700142c1037654c47aaf2ecd805053488f498e03",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
