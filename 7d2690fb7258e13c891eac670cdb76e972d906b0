@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e651c787_34d5e4a9",
+        "filename": "rbac_manifests/dynamic-local-pv-provisioner-rbac-config.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 183
+      },
+      "writtenOn": "2019-10-21T13:39:10Z",
+      "side": 1,
+      "message": "separate role for the separate components\nwhy does the dynamic agent need access to the PV API?",
+      "revId": "7d2690fb7258e13c891eac670cdb76e972d906b0",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54c9ac8f_dfe7ef84",
+        "filename": "rbac_manifests/storage-local-static-provisioner-rbac-config.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 183
+      },
+      "writtenOn": "2019-10-21T13:39:10Z",
+      "side": 1,
+      "message": "and why does the static need access to Node?it does not read, or modify the extended resource",
+      "revId": "7d2690fb7258e13c891eac670cdb76e972d906b0",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
