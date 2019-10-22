@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5e4f03bb_7663f36b",
+        "filename": "ansible/roles/cert/tasks/main.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 288
+      },
+      "writtenOn": "2019-10-22T14:52:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "587e989e_82392066",
+      "revId": "b073270c634026f3f9de19837fdcc0184b66931f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "65f9a6bc_1d282347",
         "filename": "ansible/roles/cert/vars/main.yml",
         "patchSetId": 3
@@ -33,6 +51,24 @@
       "revId": "b073270c634026f3f9de19837fdcc0184b66931f",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7db1627_0b42350a",
+        "filename": "ansible/roles/cert/vars/main.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 288
+      },
+      "writtenOn": "2019-10-22T14:52:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65f9a6bc_1d282347",
+      "revId": "b073270c634026f3f9de19837fdcc0184b66931f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
