@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e9725cd3_6fd2be89",
+        "filename": "rbac_manifests/dynamic-local-pv-provisioner-rbac-config.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 236
+      },
+      "writtenOn": "2019-10-24T10:52:31Z",
+      "side": 1,
+      "message": "Controller watch PVs due to modify lv-capacity. When PV added lv-capacity - pv capacity. When PV deleted lv-capacity + pv capacity",
+      "parentUuid": "e651c787_34d5e4a9",
+      "revId": "7d2690fb7258e13c891eac670cdb76e972d906b0",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "54c9ac8f_dfe7ef84",
         "filename": "rbac_manifests/storage-local-static-provisioner-rbac-config.yml",
         "patchSetId": 8
