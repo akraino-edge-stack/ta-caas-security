@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f0def7f_3e04ba0d",
+        "filename": "rbac_manifests/svcwatcher-rbac-config.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 43
+      },
+      "writtenOn": "2019-12-07T15:25:49Z",
+      "side": 1,
+      "message": "fix whitespace",
+      "range": {
+        "startLine": 68,
+        "startChar": 7,
+        "endLine": 68,
+        "endChar": 9
+      },
+      "revId": "f2c99833f58ce925c187503c677b658ad32658da",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
