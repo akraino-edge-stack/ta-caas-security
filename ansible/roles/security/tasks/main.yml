@@ -28,7 +28,7 @@
       - host_os.grub2_password | default(False, True)
 
   - name: generate grub config
-    command: /usr/sbin/grub2-mkconfig -o /boot/grub2/grub.cfg
+    shell: test -e /boot/grub2/grub.cfg && /usr/sbin/grub2-mkconfig -o /boot/grub2/grub.cfg || /usr/sbin/grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg
 
   - name: chsh/chfn right setting
     file:
