@@ -27,8 +27,17 @@
       - host_os is defined
       - host_os.grub2_password | default(False, True)
 
+  - name: check whether grub-efi exists
+    stat:
+      path: /boot/efi/EFI/centos/grub.cfg
+    register: grub_efi_file_stat
+
   - name: generate grub config
     command: /usr/sbin/grub2-mkconfig -o /boot/grub2/grub.cfg
+
+  - name: generate grub-efi config
+    command: /usr/sbin/grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg
+    when: grub_efi_file_stat.stat.exists == true
 
   - name: chsh/chfn right setting
     file:
